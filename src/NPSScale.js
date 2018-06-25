@@ -9,40 +9,40 @@ const MAX = 10;
  * Scale to select NPS value.
  * @param {ReactClass}
  */
-const NPSScale = React.createClass({
-    propTypes: {
+class NPSScale extends React.Component {
+    static propTypes = {
         selectedValue: PropTypes.number,
         onSubmit: PropTypes.func.isRequired
-    },
+    }
 
     getDefaultProps() {
         return {
             onSubmit: (value) => {}
         };
-    },
+    }
 
     getInitialState() {
         return {
             value: null
         };
-    },
+    }
 
     onMouseEnter(value) {
         this.setState({
             value
         });
-    },
+    }
 
     onMouseLeave(value) {
         this.setState({
             value: null
         });
-    },
+    }
 
     onSelect(value) {
         const { onSubmit } = this.props;
         onSubmit(value);
-    },
+    }
 
     render() {
         const { value } = this.state;
@@ -76,7 +76,7 @@ const NPSScale = React.createClass({
             </div>
         );
     }
-});
+}
 
 function range(start, end) {
     return Array(end - start + 1).fill().map((_, idx) => start + idx);

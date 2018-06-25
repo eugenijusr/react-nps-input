@@ -7,15 +7,16 @@ const NPSScale = require('./NPSScale');
  * Promp the current user for its NPM score.
  * @param {ReactClass}
  */
-const NPSInput = React.createClass({
-    propTypes: {
+
+class NPSInput extends React.Component {
+    propTypes = {
         animated:    PropTypes.bool,
         comment:     PropTypes.bool,
         service:     PropTypes.string,
         onSubmit:    PropTypes.func.isRequired,
         onDismissed: PropTypes.func.isRequired,
         children:    PropTypes.func
-    },
+    }
 
     getDefaultProps() {
         return {
@@ -25,7 +26,7 @@ const NPSInput = React.createClass({
             onDismissed: () => {},
             children:    () => 'Thank you for your feedback!'
         };
-    },
+    }
 
     getInitialState() {
         return {
@@ -34,7 +35,7 @@ const NPSInput = React.createClass({
             score: null,
             commentText: null
         };
-    },
+    }
 
     /**
      * User clicked on a value.
@@ -49,7 +50,7 @@ const NPSInput = React.createClass({
         else {
             this.submit(score, null);
         }
-    },
+    }
 
     /**
      * User updated comment text.
@@ -58,7 +59,7 @@ const NPSInput = React.createClass({
         this.setState({
             commentText: event.target.value
         });
-    },
+    }
 
     /**
      * User submitted a form.
@@ -67,7 +68,7 @@ const NPSInput = React.createClass({
         const { score, commentText } = this.state;
         this.submit(score, commentText);
         event.preventDefault();
-    },
+    }
 
     /**
      * User clicked to dismiss this form.
@@ -81,7 +82,7 @@ const NPSInput = React.createClass({
         }, () => {
             onDismissed({ score, commentText });
         });
-    },
+    }
 
     submit(score, commentText) {
         const { onSubmit } = this.props;
@@ -92,7 +93,7 @@ const NPSInput = React.createClass({
         }, () => {
             onSubmit({ score, commentText });
         });
-    },
+    }
 
     render() {
         const { animated, comment, service, children } = this.props;
@@ -136,6 +137,6 @@ const NPSInput = React.createClass({
             </div>
         );
     }
-});
+}
 
 module.exports = NPSInput;
