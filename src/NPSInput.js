@@ -1,4 +1,5 @@
 const React = require('react');
+const PropTypes = require('prop-types');
 const classNames = require('classnames');
 const NPSScale = require('./NPSScale');
 
@@ -6,34 +7,42 @@ const NPSScale = require('./NPSScale');
  * Promp the current user for its NPM score.
  * @param {ReactClass}
  */
-const NPSInput = React.createClass({
-    propTypes: {
-        animated:    React.PropTypes.bool,
-        comment:     React.PropTypes.bool,
-        service:     React.PropTypes.string,
-        onSubmit:    React.PropTypes.func.isRequired,
-        onDismissed: React.PropTypes.func.isRequired,
-        children:    React.PropTypes.func
-    },
 
-    getDefaultProps() {
-        return {
-            animated:    true,
-            comment:     false,
-            onSubmit:    () => {},
-            onDismissed: () => {},
-            children:    () => 'Thank you for your feedback!'
-        };
-    },
+class NPSInput extends React.Component {
+    static propTypes = {
+        animated:    PropTypes.bool,
+        comment:     PropTypes.bool,
+        service:     PropTypes.string,
+        onSubmit:    PropTypes.func.isRequired,
+        onDismissed: PropTypes.func.isRequired,
+        children:    PropTypes.func
+    }
 
-    getInitialState() {
-        return {
+    static defaultProps = {
+      animated: true,
+      comment: false,
+      onSubmit: () => {},
+      onDismissed: () => {},
+      onDismissed: () => {},
+      children: () => 'Thank you for your feedback!'
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
             submitted: false,
             dismissed: false,
             score: null,
             commentText: null
-        };
-    },
+        }
+
+        this.onSelectScore = this.onSelectScore.bind(this)
+        this.onCommentUpdate = this.onCommentUpdate.bind(this)
+        this.onFormSubmit = this.onFormSubmit.bind(this)
+        this.onDismiss = this.onDismiss.bind(this)
+        this.submit = this.submit.bind(this)
+    }
 
     /**
      * User clicked on a value.
@@ -48,7 +57,7 @@ const NPSInput = React.createClass({
         else {
             this.submit(score, null);
         }
-    },
+    }
 
     /**
      * User updated comment text.
@@ -57,7 +66,7 @@ const NPSInput = React.createClass({
         this.setState({
             commentText: event.target.value
         });
-    },
+    }
 
     /**
      * User submitted a form.
@@ -66,7 +75,7 @@ const NPSInput = React.createClass({
         const { score, commentText } = this.state;
         this.submit(score, commentText);
         event.preventDefault();
-    },
+    }
 
     /**
      * User clicked to dismiss this form.
@@ -80,7 +89,7 @@ const NPSInput = React.createClass({
         }, () => {
             onDismissed({ score, commentText });
         });
-    },
+    }
 
     submit(score, commentText) {
         const { onSubmit } = this.props;
@@ -91,7 +100,7 @@ const NPSInput = React.createClass({
         }, () => {
             onSubmit({ score, commentText });
         });
-    },
+    }
 
     render() {
         const { animated, comment, service, children } = this.props;
@@ -135,6 +144,6 @@ const NPSInput = React.createClass({
             </div>
         );
     }
-});
+}
 
 module.exports = NPSInput;
