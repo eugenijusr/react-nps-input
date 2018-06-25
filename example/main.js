@@ -3,10 +3,10 @@ const ReactDOM = require('react-dom');
 
 const NPSInput = require('../src');
 
-const Example = React.createClass({
+class Example extends React.Component {
     onSubmit({ score, commentText }) {
-        alert('Submitted ' + score + (commentText ? ' and comment "' + commentText + '"' : 'and no comment'));
-    },
+        alert('Submitted ' + score + (commentText ? ' and comment "' + commentText + '"' : ' and no comment'));
+    }
 
     render() {
         return (
@@ -15,7 +15,7 @@ const Example = React.createClass({
             </div>
         );
     }
-});
+}
 
 ReactDOM.render(
     <Example />,

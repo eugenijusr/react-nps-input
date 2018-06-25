@@ -9,7 +9,7 @@
     "prepublish": "rm -rf ./lib && babel --out-dir ./lib ./src",
     "test": "npm run lint",
     "postpublish": "npm run deploy-example",
-    "build-example-js": "browserify ./example/main.js -o ./example/bundle.js -t [ babelify --presets [ es2015 react ] ]",
+    "build-example-js": "browserify ./example/main.js -o ./example/bundle.js -t [ babelify --presets [ es2015 react stage-0 ] ]",
     "build-example-css": "node-sass ./example/main.scss ./example/main.css",
     "build-example": "npm run build-example-js; npm run build-example-css",
     "serve-example": "live-server ./example/ --no-browser --port=8081",

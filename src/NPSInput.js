@@ -9,7 +9,7 @@ const NPSScale = require('./NPSScale');
  */
 
 class NPSInput extends React.Component {
-    propTypes = {
+    static propTypes = {
         animated:    PropTypes.bool,
         comment:     PropTypes.bool,
         service:     PropTypes.string,
@@ -18,23 +18,30 @@ class NPSInput extends React.Component {
         children:    PropTypes.func
     }
 
-    getDefaultProps() {
-        return {
-            animated:    true,
-            comment:     false,
-            onSubmit:    () => {},
-            onDismissed: () => {},
-            children:    () => 'Thank you for your feedback!'
-        };
+    static defaultProps = {
+      animated: true,
+      comment: false,
+      onSubmit: () => {},
+      onDismissed: () => {},
+      onDismissed: () => {},
+      children: () => 'Thank you for your feedback!'
     }
 
-    getInitialState() {
-        return {
+    constructor(props) {
+        super(props)
+
+        this.state = {
             submitted: false,
             dismissed: false,
             score: null,
             commentText: null
-        };
+        }
+
+        this.onSelectScore = this.onSelectScore.bind(this)
+        this.onCommentUpdate = this.onCommentUpdate.bind(this)
+        this.onFormSubmit = this.onFormSubmit.bind(this)
+        this.onDismiss = this.onDismiss.bind(this)
+        this.submit = this.submit.bind(this)
     }
 
     /**
