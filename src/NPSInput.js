@@ -1,5 +1,5 @@
 const React = require('react');
-const PropTypes = require('proptypes')
+const PropTypes = require('prop-types');
 const classNames = require('classnames');
 const NPSScale = require('./NPSScale');
 
