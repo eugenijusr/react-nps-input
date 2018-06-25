@@ -1,4 +1,5 @@
 const React = require('react');
+const PropTypes = require('proptypes')
 const classNames = require('classnames');
 const NPSScale = require('./NPSScale');
 
@@ -8,12 +9,12 @@ const NPSScale = require('./NPSScale');
  */
 const NPSInput = React.createClass({
     propTypes: {
-        animated:    React.PropTypes.bool,
-        comment:     React.PropTypes.bool,
-        service:     React.PropTypes.string,
-        onSubmit:    React.PropTypes.func.isRequired,
-        onDismissed: React.PropTypes.func.isRequired,
-        children:    React.PropTypes.func
+        animated:    PropTypes.bool,
+        comment:     PropTypes.bool,
+        service:     PropTypes.string,
+        onSubmit:    PropTypes.func.isRequired,
+        onDismissed: PropTypes.func.isRequired,
+        children:    PropTypes.func
     },
 
     getDefaultProps() {

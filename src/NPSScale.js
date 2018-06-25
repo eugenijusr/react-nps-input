@@ -1,4 +1,5 @@
 const React = require('react');
+const PropTypes = require('proptypes')
 const classNames = require('classnames');
 
 const MIN = 0;
@@ -10,8 +11,8 @@ const MAX = 10;
  */
 const NPSScale = React.createClass({
     propTypes: {
-        selectedValue: React.PropTypes.number,
-        onSubmit: React.PropTypes.func.isRequired
+        selectedValue: PropTypes.number,
+        onSubmit: PropTypes.func.isRequired
     },
 
     getDefaultProps() {
